@@ -1,5 +1,6 @@
 package chessen.productfinder.presentation.searchProducts;
 
+import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,13 +14,8 @@ import chessen.productfinder.R;
 
 public class ProductsViewHolder extends  RecyclerView.ViewHolder {
 
-
-
     final TextView name;
-  //  final TextView description;
     final ImageView image;
-    //final ImageView delete;
-   // final ImageView save;
     final TextView price;
     final TextView salePrice;
 
@@ -27,8 +23,8 @@ public class ProductsViewHolder extends  RecyclerView.ViewHolder {
         super(v);
         name = (TextView) v.findViewById(R.id.product_name);
         image = (ImageView) v.findViewById(R.id.product_image);
-        //save = (ImageView) v.findViewById(R.id.save_to_wishlist);
         price = (TextView) v.findViewById(R.id.product_price);
         salePrice = (TextView) v.findViewById(R.id.product_salePrice);
+        price.setPaintFlags(price.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
     }
 }

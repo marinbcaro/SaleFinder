@@ -22,6 +22,6 @@ public interface ProductsSearchContract {
     }
 
     interface Presenter extends CoreMvpPresenter<View> {
-        void search(String category);
+        void search(String category, String searchTerm, int offset);
     }
 }

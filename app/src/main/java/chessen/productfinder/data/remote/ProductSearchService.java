@@ -11,6 +11,6 @@ import rx.Observable;
 
 public interface ProductSearchService {
 
-    @GET("?sort=Popular&limit=10&fl=d0")
+    @GET("?sort=Popular&limit=30&fl=d0")
     Observable<ProductsList> getProducts(@Query("cat") String categoryId, @Query("fts") String search, @Query("offset") int offset);
 }

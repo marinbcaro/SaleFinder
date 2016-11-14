@@ -48,6 +48,7 @@ public class ProductSearchActivity extends AppCompatActivity implements Products
         productsAdapter = new ProductsAdapter(null, this);
         recyclerViewProducts.setAdapter(productsAdapter);
 
+
     }
 
     @Override
@@ -68,7 +69,7 @@ public class ProductSearchActivity extends AppCompatActivity implements Products
                 if (!searchView.isIconified()) {
                     searchView.setIconified(true);
                 }
-                productSearchPresenter.search(searchTerm);
+                productSearchPresenter.search(getResources().getString(R.string.womenCategory),searchTerm,0);
                 toolbar.setTitle(searchTerm);
                 searchActionMenuItem.collapseActionView();
                 return false;

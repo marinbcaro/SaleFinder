@@ -11,7 +11,7 @@
     <string name="title_productdetailactivity_detail">ProductDetailActivity Detail</string>
     <string name="title_activity_product_detail"></string>
     <string name="title_activity_product_sale">ProductSaleActivity</string>
-    <string  name="setNotifications">Check to receive notifications when a product from the wish list goes on sale.</string>
+    <string name="setNotifications">Check to receive notifications when a product from the wish list goes on sale.</string>
     <string name="setTitleSales">Wish list Products currently on sale:</string>
     <string name="productDetailSale">On Sale</string>
     <string name="empty_list">Currently there are no items on sale from the wish list</string>
@@ -20,4 +20,5 @@
     <string name="deletedwishList">Product Deleted from Wish list</string>
     <string name="saveNotifications">Settings saved</string>
     <string name="checkNotification">Check to receive notifications about sales in your wish list</string>
+    <string name="womenCategory">womens</string>
 </resources>

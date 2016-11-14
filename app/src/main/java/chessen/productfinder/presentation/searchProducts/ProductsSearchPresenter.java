@@ -23,11 +23,11 @@ class ProductsSearchPresenter extends CorePresenter<ProductsSearchContract.View>
     }
 
     @Override
-    public void search(String searchTerm) {
+    public void search(String category,String searchTerm, int offset) {
         checkViewAdded();
         getView().showLoading();
 
-        addSubscription(mProductRepository.searchProducts("womens-clothes",searchTerm,0).subscribeOn(ioScheduler).observeOn(mainScheduler)
+        addSubscription(mProductRepository.searchProducts(category,searchTerm,0).subscribeOn(ioScheduler).observeOn(mainScheduler)
                 .subscribe(new Subscriber<List<Product>>() {
                     @Override
                     public void onCompleted() {

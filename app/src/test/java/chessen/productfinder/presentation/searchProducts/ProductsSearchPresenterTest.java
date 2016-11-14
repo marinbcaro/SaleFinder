@@ -54,7 +54,7 @@ public class ProductsSearchPresenterTest {
         when(productRepository.searchProducts(anyString(), anyString(), anyInt())).thenReturn(Observable.<List<Product>>just(productList.getProducts()));
 
         //Act
-        productSearchPresenter.search("");
+        productSearchPresenter.search("womens-clothes","white sweater",0);
 
         //Assert
         verify(view).showLoading();
@@ -70,7 +70,7 @@ public class ProductsSearchPresenterTest {
         when(productRepository.searchProducts(anyString(), anyString(), anyInt())).thenReturn(Observable.<List<Product>>error(new IOException(errorMsg)));
 
         //Arrange
-        productSearchPresenter.search("test");
+        productSearchPresenter.search("womens-clothes","white sweater",0);
 
         //Assert
         verify(view).showLoading();
@@ -84,7 +84,7 @@ public class ProductsSearchPresenterTest {
 
         //Act
         productSearchPresenter.removeView();
-        productSearchPresenter.search("test");
+        productSearchPresenter.search("womens-clothes","white sweater",0);
 
         //Assert
         verify(view, never()).showLoading();
