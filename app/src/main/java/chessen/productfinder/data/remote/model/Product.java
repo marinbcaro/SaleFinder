@@ -29,9 +29,9 @@ public class Product {
         name = mname;
         url = murl;
         brand = mbrand;
-        price = mprice;
+        priceLabel = mprice;
         image = mimage;
-        salePrice = msalePrice;
+        salePriceLabel = msalePrice;
         unbrandedName = munBrandedName;
     }
 
