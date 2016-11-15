@@ -39,10 +39,13 @@ public class ProductRepositoryImplTest {
 
     private ProductRepository productRepository;
 
+    private TestSubscriber<List<Product>> subscriber;
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         productRepository = new ProductRepositoryImpl(searchService);
+        subscriber = new TestSubscriber<>();
     }
 
 
@@ -52,8 +55,7 @@ public class ProductRepositoryImplTest {
         when(searchService.getProducts(anyString(), anyString(), anyInt())).thenReturn(Observable.just(productsList()));
 
         //Act
-        TestSubscriber<List<Product>> subscriber = new TestSubscriber<>();
-        productRepository.searchProducts("", "", 0).subscribe(subscriber);
+        productRepository.searchProducts("womens", "white sweater", 0).subscribe(subscriber);
 
 
         subscriber.awaitTerminalEvent();
@@ -65,7 +67,7 @@ public class ProductRepositoryImplTest {
         //Assert
         Assert.assertEquals(PRODUCT_ID_1, products.get(0).getId());
         Assert.assertEquals(PRODUCT_ID_2, products.get(1).getId());
-        verify(searchService).getProducts("", "", 0);
+        verify(searchService).getProducts("womens", "white sweater", 0);
 
     }
 
@@ -77,15 +79,14 @@ public class ProductRepositoryImplTest {
 
 
         //Act
-        TestSubscriber<List<Product>> subscriber = new TestSubscriber<>();
-        productRepository.searchProducts("", "", 0).subscribe(subscriber);
+        productRepository.searchProducts("womens", "white sweater", 0).subscribe(subscriber);
 
 
         subscriber.awaitTerminalEvent();
         subscriber.assertNoErrors();
 
         //Assert
-        verify(searchService, times(2)).getProducts("", "", 0);
+        verify(searchService, times(2)).getProducts("womens", "white sweater", 0);
     }
 
 
@@ -93,16 +94,16 @@ public class ProductRepositoryImplTest {
     public void givenTheUserSearchForProductsWhenOtherHttpErrorThenSearchTerminatedWithError() {
         //Arrange
         when(searchService.getProducts(anyString(), anyString(), anyInt())).thenReturn(get403ForbiddenError());
-        TestSubscriber<List<Product>> subscriber = new TestSubscriber<>();
+
 
         //Act
-        productRepository.searchProducts("", "", 0).subscribe(subscriber);
+        productRepository.searchProducts("white", "sweater", 0).subscribe(subscriber);
 
         subscriber.awaitTerminalEvent();
         subscriber.assertError(HttpException.class);
 
         //Assert
-        verify(searchService).getProducts("", "", 0);
+        verify(searchService).getProducts("white", "sweater", 0);
     }
 
 

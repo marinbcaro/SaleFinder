@@ -28,17 +28,20 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public Observable<List<Product>> searchProducts(final String category, final String searchTerm, final int offset) {
 
+        //OPERATOR DEFER:do not create the Observable until a Subscriber subscribes; create a fresh Observable on each subscription
         return Observable.defer(new Func0<Observable<List<Product>>>() {
             @Override
             public Observable<List<Product>> call() {
+                //CONCAT MAP: transform the items emitted by an Observable into Observables (or Iterables), then flatten this into a single Observable
                 return (searchService.getProducts(category, searchTerm, offset)).concatMap(new Func1<ProductsList, Observable<? extends Product>>() {
                     @Override
                     public Observable<? extends Product> call(ProductsList productsList) {
+                        //OPERATOR FROM: convert an Iterable, a Future, or an Array into an Observable
                         return (Observable.from(productsList.getProducts()));
                     }
                 }).toList();
             }
-        }).retryWhen(new RetryWithDelay(3, 3000));
+        }).retryWhen(new RetryWithDelay(2, 3000));
     }
 
     public class RetryWithDelay implements
@@ -57,7 +60,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         @Override
         public Observable<?> call(Observable<? extends Throwable> attempts) {
             return attempts
-                    .flatMap(new Func1<Throwable, Observable<?>>() {
+                    .concatMap(new Func1<Throwable, Observable<?>>() {
                         @Override
                         public Observable<?> call(Throwable throwable) {
 

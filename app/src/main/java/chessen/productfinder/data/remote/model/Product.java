@@ -15,6 +15,8 @@ public class Product {
     private String url;
     private String price;
     private String salePrice;
+    private String priceLabel;
+    private String salePriceLabel;
 
 
     public Product() {
@@ -78,6 +80,12 @@ public class Product {
         return salePrice;
     }
 
+    public String getPriceLabel() {
+        return priceLabel;
+    }
+    public String getSalePriceLabel() {
+        return salePriceLabel;
+    }
 
     public String getUnbrandedName() {
         return unbrandedName;

@@ -41,8 +41,8 @@ class ProductsAdapter extends RecyclerView.Adapter<ProductsViewHolder> {
         Product item = items.get(position);
 
         holder.name.setText(item.getName());
-        holder.price.setText("$" + item.getPrice());
-        holder.salePrice.setText("$" + item.getSalePrice());
+        holder.price.setText(item.getPriceLabel());
+        holder.salePrice.setText(item.getSalePriceLabel());
         Image ima = item.getImage();
         Sizes size = ima.getSizes();
         IPhoneSmall iphone = size.getIphone();

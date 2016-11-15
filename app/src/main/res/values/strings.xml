@@ -20,5 +20,5 @@
     <string name="deletedwishList">Product Deleted from Wish list</string>
     <string name="saveNotifications">Settings saved</string>
     <string name="checkNotification">Check to receive notifications about sales in your wish list</string>
-    <string name="womenCategory">womens</string>
+    <string name="womenCategory">women</string>
 </resources>

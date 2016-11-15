@@ -24,6 +24,7 @@ import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyList;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -57,9 +58,9 @@ public class ProductsSearchPresenterTest {
         productSearchPresenter.search("womens-clothes","white sweater",0);
 
         //Assert
-        verify(view).showLoading();
-        verify(view).hideLoading();
-        verify(view).showSearchResults(productList.getProducts());
+        verify(view, times(1)).showLoading();
+        verify(view, times(1)).hideLoading();
+        verify(view, times(1)).showSearchResults(productList.getProducts());
         verify(view, never()).showError(anyString());
     }
 
@@ -73,10 +74,10 @@ public class ProductsSearchPresenterTest {
         productSearchPresenter.search("womens-clothes","white sweater",0);
 
         //Assert
-        verify(view).showLoading();
-        verify(view).hideLoading();
+        verify(view, times(1)).showLoading();
+        verify(view, times(1)).hideLoading();
         verify(view, never()).showSearchResults(anyList());
-        verify(view).showError(errorMsg);
+        verify(view, times(1)).showError(errorMsg);
     }
 
     @Test(expected = CorePresenter.MvpViewNotAddedViewException.class)
